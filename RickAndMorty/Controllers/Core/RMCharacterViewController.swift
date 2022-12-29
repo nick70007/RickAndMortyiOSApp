@@ -11,7 +11,7 @@ import UIKit
 final class RMCharacterViewController: UIViewController {
 
     // MARK: - Properties
-    private let charactersListView = CharacterListView()
+    private let charactersListView = RMCharacterListView()
     
     // MARK: - Life Cycle
     override func viewDidLoad() {

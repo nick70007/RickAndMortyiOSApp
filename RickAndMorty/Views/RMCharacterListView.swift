@@ -1,5 +1,5 @@
 //
-//  CharacterListView.swift
+//  RMCharacterListView.swift
 //  RickAndMorty
 //
 //  Created by iMac on 29/12/22.
@@ -8,10 +8,10 @@
 import UIKit
 
 /// View that handles showing list of characters, loader, etc..
-final class CharacterListView: UIView {
+final class RMCharacterListView: UIView {
 
     // MARK: - Properties
-    private let viewModel = CharacterListViewModel()
+    private let viewModel = RMCharacterListViewModel()
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -28,7 +28,7 @@ final class CharacterListView: UIView {
         cv.isHidden = true
         cv.alpha = 0
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cv.register(RMCharacterCell.self, forCellWithReuseIdentifier: RMCharacterCell.cellID)
         return cv
     }()
     

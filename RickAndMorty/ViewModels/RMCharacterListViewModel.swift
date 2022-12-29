@@ -1,5 +1,5 @@
 //
-//  CharacterListViewModel.swift
+//  RMCharacterListViewModel.swift
 //  RickAndMorty
 //
 //  Created by iMac on 29/12/22.
@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 
-final class CharacterListViewModel: NSObject {
+final class RMCharacterListViewModel: NSObject {
     
+    // MARK: - Helpers
     func fetchCharacters() {
         RMService.shared.execute(.listCharactersRequests,
                                  type: RMGetAllCharactersResponse.self) { result in
@@ -21,15 +22,21 @@ final class CharacterListViewModel: NSObject {
     }
 }
 
-extension CharacterListViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+// MARK: - UICollectionViewDataSource & UICollectionViewDelegate & UICollectionViewDelegateFlowLayout
+extension RMCharacterListViewModel: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .systemGreen
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterCell.cellID, for: indexPath) as? RMCharacterCell else {
+            fatalError("Unsupported Cell")
+        }
+        let viewModel = RMCharacterCellViewModel(characterName: "Nishant",
+                                                 characterStatus: .alive,
+                                                 characterImageURL: nil)
+        cell.configure(with: viewModel)
         return cell
     }
     

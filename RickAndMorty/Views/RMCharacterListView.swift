@@ -16,18 +16,16 @@ final class RMCharacterListView: UIView {
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         return spinner
     }()
     
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 30, right: 10) // bottom: 0 if dont need space at the bottom
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 10, bottom: 30, right: 10)
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.isHidden = true
         cv.alpha = 0
-        cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(RMCharacterCell.self, forCellWithReuseIdentifier: RMCharacterCell.cellID)
         return cv
     }()
@@ -35,7 +33,6 @@ final class RMCharacterListView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
         addSubViews(collectionView,spinner)
         addConstraints()
         spinner.startAnimating()
@@ -44,23 +41,13 @@ final class RMCharacterListView: UIView {
         setupCollectionView()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("Unsupported")
-    }
+    required init?(coder: NSCoder) { fatalError("Unsupported") }
     
     // MARK: - Helpers
     private func addConstraints() {
-        NSLayoutConstraint.activate([
-            spinner.widthAnchor.constraint(equalToConstant: 100),
-            spinner.heightAnchor.constraint(equalToConstant: 100),
-            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
-            
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+        spinner.setDimensions(height: 100, width: 100)
+        spinner.centerInSuperview()
+        collectionView.fillSuperview()
     }
     
     private func setupCollectionView() {
@@ -75,9 +62,6 @@ extension RMCharacterListView: RMCharacterListViewModelDelegate {
         self.spinner.stopAnimating()
         self.collectionView.isHidden = false
         self.collectionView.reloadData()
-        
-        UIView.animate(withDuration: 0.4) {
-            self.collectionView.alpha = 1
-        }
+        UIView.animate(withDuration: 0.4) { self.collectionView.alpha = 1 }
     }
 }

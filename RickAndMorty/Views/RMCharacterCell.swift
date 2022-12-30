@@ -17,7 +17,6 @@ class RMCharacterCell: UICollectionViewCell {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
     }()
     
@@ -25,7 +24,6 @@ class RMCharacterCell: UICollectionViewCell {
         let name = UILabel()
         name.textColor = .label
         name.font = .systemFont(ofSize: 18, weight: .medium)
-        name.translatesAutoresizingMaskIntoConstraints = false
         return name
     }()
     
@@ -33,7 +31,6 @@ class RMCharacterCell: UICollectionViewCell {
         let status = UILabel()
         status.textColor = .secondaryLabel
         status.font = .systemFont(ofSize: 16, weight: .regular)
-        status.translatesAutoresizingMaskIntoConstraints = false
         return status
     }()
     
@@ -46,9 +43,7 @@ class RMCharacterCell: UICollectionViewCell {
         setupShadow()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("Unsupported")
-    }
+    required init?(coder: NSCoder) { fatalError("Unsupported") }
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -63,7 +58,6 @@ class RMCharacterCell: UICollectionViewCell {
     }
     
     // MARK: - Private Methods
-    
     private func setupShadow() {
         contentView.setCellDropShadow(cornerRadius: 8,
                                       shadowRadius: 2,
@@ -75,24 +69,24 @@ class RMCharacterCell: UICollectionViewCell {
     }
     
     private func addConstraints() {
-        NSLayoutConstraint.activate([
-        
-            nameLabel.heightAnchor.constraint(equalToConstant: 30),
-            statusLabel.heightAnchor.constraint(equalToConstant: 30),
-            
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
-            statusLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
-            statusLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
-            
-            statusLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
-            nameLabel.bottomAnchor.constraint(equalTo: statusLabel.topAnchor),
-            
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3),
-        ])
+        nameLabel.constrainHeight(30)
+        statusLabel.constrainHeight(30)
+        nameLabel.anchor(left: contentView.leftAnchor,
+                         bottom: statusLabel.topAnchor,
+                         right: contentView.rightAnchor,
+                         paddingLeft: 7,
+                         paddingRight: 7)
+        statusLabel.anchor(left: contentView.leftAnchor,
+                           bottom: contentView.bottomAnchor,
+                           right: contentView.rightAnchor,
+                           paddingLeft: 7,
+                           paddingBottom: 3,
+                           paddingRight: 7)
+        imageView.anchor(top: contentView.topAnchor,
+                         left: contentView.leftAnchor,
+                         bottom: nameLabel.topAnchor,
+                         right: contentView.rightAnchor,
+                         paddingBottom: 3)
     }
     
     // MARK: - Public Methods

@@ -24,11 +24,6 @@ final class RMCharacterViewController: UIViewController {
     // MARK: - Helpers
     private func setupViews() {
         view.addSubview(charactersListView)
-        NSLayoutConstraint.activate([
-            charactersListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            charactersListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            charactersListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            charactersListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-        ])
+        charactersListView.fillSuperviewSafeAreaLayoutGuide()
     }
 }

@@ -60,11 +60,11 @@ class RMCharacterCell: UICollectionViewCell {
     // MARK: - Private Methods
     private func setupShadow() {
         contentView.setCellDropShadow(cornerRadius: 8,
-                                      shadowRadius: 2,
+                                      shadowRadius: 1.7,
                                       shadowColor: .label,
-                                      shadowOpacity: 0.2,
-                                      offsetWidth: -2,
-                                      offsetHeight: 2)
+                                      shadowOpacity: 0.4,
+                                      offsetWidth: 0,
+                                      offsetHeight: 1.75)
         imageView.roundSpecificCorners(corners: [.topLeft,.topRight], radius: 8)
     }
     

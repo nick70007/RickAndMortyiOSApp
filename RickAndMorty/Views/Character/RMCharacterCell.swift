@@ -94,6 +94,9 @@ final class RMCharacterCell: UICollectionViewCell {
     public func configure(with viewModel: RMCharacterCellViewModel) {
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
+        
+        self.imageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
+//        self.imageView.sd_imageTransition = .fade
         guard let url = viewModel.characterImageURL else { return }
         self.imageView.sd_setImage(with: url)
 //        viewModel.fetchImage { [weak self] result in

@@ -33,6 +33,9 @@ final class RMCharacterListView: UIView {
         cv.showsVerticalScrollIndicator = false
         cv.alpha = 0
         cv.register(RMCharacterCell.self, forCellWithReuseIdentifier: RMCharacterCell.cellID)
+        cv.register(RMFooterLoadingView.self,
+                    forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                    withReuseIdentifier: RMFooterLoadingView.identifier)
         return cv
     }()
     

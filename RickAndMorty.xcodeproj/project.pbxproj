@@ -10,6 +10,8 @@
 		8886D9CA2960C10C007C232B /* RMCharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886D9C92960C10C007C232B /* RMCharacterDetailsViewController.swift */; };
 		8886D9CC2960C1E0007C232B /* RMCharacterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886D9CB2960C1E0007C232B /* RMCharacterDetailsView.swift */; };
 		8886D9CF2960C247007C232B /* RMCharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8886D9CE2960C247007C232B /* RMCharacterDetailsViewModel.swift */; };
+		8886D9D2296158B6007C232B /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 8886D9D1296158B6007C232B /* SDWebImage */; };
+		8886D9D529615B33007C232B /* LeakedViewControllerDetector in Frameworks */ = {isa = PBXBuildFile; productRef = 8886D9D429615B33007C232B /* LeakedViewControllerDetector */; };
 		889D3E60295DD03100AEF9B3 /* RMGetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889D3E5F295DD03100AEF9B3 /* RMGetAllCharactersResponse.swift */; };
 		889D3E62295DD2B800AEF9B3 /* RMCharacterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889D3E61295DD2B800AEF9B3 /* RMCharacterListViewModel.swift */; };
 		889D3E64295DD33700AEF9B3 /* RMCharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889D3E63295DD33700AEF9B3 /* RMCharacterListView.swift */; };
@@ -75,6 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8886D9D2296158B6007C232B /* SDWebImage in Frameworks */,
+				8886D9D529615B33007C232B /* LeakedViewControllerDetector in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +265,10 @@
 			dependencies = (
 			);
 			name = RickAndMorty;
+			packageProductDependencies = (
+				8886D9D1296158B6007C232B /* SDWebImage */,
+				8886D9D429615B33007C232B /* LeakedViewControllerDetector */,
+			);
 			productName = RickAndMorty;
 			productReference = 88C9820E295C946900F0A35A /* RickAndMorty.app */;
 			productType = "com.apple.product-type.application";
@@ -289,6 +297,10 @@
 				Base,
 			);
 			mainGroup = 88C98205295C946900F0A35A;
+			packageReferences = (
+				8886D9D0296158B6007C232B /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				8886D9D329615B33007C232B /* XCRemoteSwiftPackageReference "LeakedViewControllerDetector" */,
+			);
 			productRefGroup = 88C9820F295C946900F0A35A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -550,6 +562,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8886D9D0296158B6007C232B /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8886D9D329615B33007C232B /* XCRemoteSwiftPackageReference "LeakedViewControllerDetector" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Janneman84/LeakedViewControllerDetector.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8886D9D1296158B6007C232B /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8886D9D0296158B6007C232B /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		8886D9D429615B33007C232B /* LeakedViewControllerDetector */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8886D9D329615B33007C232B /* XCRemoteSwiftPackageReference "LeakedViewControllerDetector" */;
+			productName = LeakedViewControllerDetector;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88C98206295C946900F0A35A /* Project object */;
 }

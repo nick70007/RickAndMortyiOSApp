@@ -16,7 +16,6 @@ final class RMCharacterListView: UIView {
 
     // MARK: - Properties
     private let viewModel = RMCharacterListViewModel()
-    
     public weak var delegate: RMCharacterListViewDelegate? = nil
     
     private let spinner: UIActivityIndicatorView = {

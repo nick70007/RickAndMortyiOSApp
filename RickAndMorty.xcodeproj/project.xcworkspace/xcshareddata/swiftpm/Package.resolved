@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "LeakedViewControllerDetector",
+        "repositoryURL": "https://github.com/Janneman84/LeakedViewControllerDetector.git",
+        "state": {
+          "branch": null,
+          "revision": "9e43e969694be5e374f0067f21685e5385ffadac",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "4178d12a44691182c2eb79c70281b14cb73f4cbf",
+          "version": "5.14.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import SDWebImage
 
 /// Single cell for a character
-class RMCharacterCell: UICollectionViewCell {
+final class RMCharacterCell: UICollectionViewCell {
     
     // MARK: - Properties
     static let cellID = "RMCharacterCell"
@@ -93,15 +94,16 @@ class RMCharacterCell: UICollectionViewCell {
     public func configure(with viewModel: RMCharacterCellViewModel) {
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
-        
-        viewModel.fetchImage { [weak self] result in
-            switch result {
-                case .success(let data):
-                    DispatchQueue.main.async {
-                        self?.imageView.image = UIImage.init(data: data)
-                    }
-                case .failure(let error): print(String(describing: error))
-            }
-        }
+        guard let url = viewModel.characterImageURL else { return }
+        self.imageView.sd_setImage(with: url)
+//        viewModel.fetchImage { [weak self] result in
+//            switch result {
+//                case .success(let data):
+//                    DispatchQueue.main.async {
+//                        self?.imageView.image = UIImage.init(data: data)
+//                    }
+//                case .failure(let error): print(String(describing: error))
+//            }
+//        }
     }
 }

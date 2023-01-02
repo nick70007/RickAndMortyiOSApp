@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class RMCharacterCellViewModel {
+final class RMCharacterCellViewModel: Hashable, Equatable {
     
     // MARK: - Init
     internal init(characterName: String,
@@ -16,6 +16,16 @@ final class RMCharacterCellViewModel {
         self.characterName = characterName
         self.characterStatus = characterStatus
         self.characterImageURL = characterImageURL
+    }
+    
+    static func == (lhs: RMCharacterCellViewModel, rhs: RMCharacterCellViewModel) -> Bool {
+        return lhs.hashValue == rhs.hashValue
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(characterName)
+        hasher.combine(characterStatus)
+        hasher.combine(characterImageURL)
     }
     
     // MARK: - Properties

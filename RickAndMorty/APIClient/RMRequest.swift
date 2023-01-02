@@ -23,6 +23,44 @@ final class RMRequest {
         self.queryParameters = queryParameters
     }
     
+    convenience init?(url: URL) {
+        let string = url.absoluteString
+        
+        if !string.contains(Constants.BASE_URL) {
+           return nil
+        }
+        
+        let trimmed = string.replacingOccurrences(of: Constants.BASE_URL+"/", with: "")
+        
+        if trimmed.contains("/") {
+            let components = trimmed.components(separatedBy: "/")
+            if !components.isEmpty {
+                let endPointString = components[0]
+                if let rmEndPoint = RMEndpoint(rawValue: endPointString) {
+                    self.init(endpoint: rmEndPoint)
+                    return
+                }
+            }
+        } else if trimmed.contains("?") {
+            let components = trimmed.components(separatedBy: "?")
+            if !components.isEmpty, components.count >= 2 {
+                let endPointString = components[0]
+                let queryItemString = components[1]
+                let queryItems: [URLQueryItem] = queryItemString.components(separatedBy: "&").compactMap {
+                    guard $0.contains("=") else { return nil }
+                    let parts = $0.components(separatedBy: "=")
+                    return URLQueryItem(name: parts[0], value: parts[1])
+                }
+                if let rmEndPoint = RMEndpoint(rawValue: endPointString) {
+                    self.init(endpoint: rmEndPoint, queryParameters: queryItems)
+                    return
+                }
+            }
+        }
+        
+        return nil
+    }
+    
     /// API Constants
     private struct Constants {
         static let BASE_URL = "https://rickandmortyapi.com/api"

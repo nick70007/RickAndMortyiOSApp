@@ -94,19 +94,12 @@ final class RMCharacterCell: UICollectionViewCell {
     public func configure(with viewModel: RMCharacterCellViewModel) {
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
-        
+        self.setImageData(viewModel: viewModel)
+    }
+    
+    private func setImageData(viewModel: RMCharacterCellViewModel) {
         self.imageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
-//        self.imageView.sd_imageTransition = .fade
         guard let url = viewModel.characterImageURL else { return }
         self.imageView.sd_setImage(with: url)
-//        viewModel.fetchImage { [weak self] result in
-//            switch result {
-//                case .success(let data):
-//                    DispatchQueue.main.async {
-//                        self?.imageView.image = UIImage.init(data: data)
-//                    }
-//                case .failure(let error): print(String(describing: error))
-//            }
-//        }
     }
 }

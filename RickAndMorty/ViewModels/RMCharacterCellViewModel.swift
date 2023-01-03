@@ -18,6 +18,13 @@ final class RMCharacterCellViewModel: Hashable, Equatable {
         self.characterImageURL = characterImageURL
     }
     
+    // MARK: - Properties
+    public let characterName: String
+    private let characterStatus: RMCharacterStatus
+    public let characterImageURL: URL?
+    public var characterStatusText: String { return "Status: \(characterStatus.text)"}
+    
+    // MARK: - Hashable & Equatable
     static func == (lhs: RMCharacterCellViewModel, rhs: RMCharacterCellViewModel) -> Bool {
         return lhs.hashValue == rhs.hashValue
     }
@@ -28,28 +35,9 @@ final class RMCharacterCellViewModel: Hashable, Equatable {
         hasher.combine(characterImageURL)
     }
     
-    // MARK: - Properties
-    public let characterName: String
-    private let characterStatus: RMCharacterStatus
-    public let characterImageURL: URL?
-    
-    public var characterStatusText: String {
-        return "Status: \(characterStatus.text)"
-    }
-    
+    // MARK: - Fetch Image
 //    public func fetchImage(completion: @escaping (Result<Data,Error>) -> ()) {
-//        
-//        // TODO: Abstract to Image Manager
-//        guard let url = characterImageURL else {
-//            return completion(.failure(URLError.init(.badURL)))
-//        }
-//        
-//        let request = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: request) { data, _, error in
-//            guard let data = data, error == nil else {
-//                return completion(.failure(error ?? URLError.init(.badServerResponse)))
-//            }
-//            completion(.success(data))
-//        }.resume()
+//        guard let url = characterImageURL else { return completion(.failure(URLError.init(.badURL))) }
+//        RMImageLoader.shared.downloadImage(url: url, completion: completion)
 //    }
 }

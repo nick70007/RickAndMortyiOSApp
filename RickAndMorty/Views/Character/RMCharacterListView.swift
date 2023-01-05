@@ -8,7 +8,8 @@
 import UIKit
 
 protocol RMCharacterListViewDelegate: AnyObject {
-    func rmCharacterListView(_ characterListView: RMCharacterListView, didSelectCharacter character: RMCharacter)
+    func rmCharacterListView(_ characterListView: RMCharacterListView,
+                             didSelectCharacter character: RMCharacter)
 }
 
 /// View that handles showing list of characters, loader, etc..

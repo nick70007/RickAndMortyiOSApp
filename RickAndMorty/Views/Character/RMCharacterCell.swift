@@ -94,10 +94,10 @@ final class RMCharacterCell: UICollectionViewCell {
     public func configure(with viewModel: RMCharacterCellViewModel) {
         nameLabel.text = viewModel.characterName
         statusLabel.text = viewModel.characterStatusText
-        self.setImageData(viewModel: viewModel)
+        self.setImageData(viewModel)
     }
     
-    private func setImageData(viewModel: RMCharacterCellViewModel) {
+    private func setImageData(_ viewModel: RMCharacterCellViewModel) {
         self.imageView.sd_imageIndicator = SDWebImageActivityIndicator.medium
         guard let url = viewModel.characterImageURL else { return }
         self.imageView.sd_setImage(with: url)

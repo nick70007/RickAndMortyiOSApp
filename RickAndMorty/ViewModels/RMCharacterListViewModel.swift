@@ -39,7 +39,6 @@ final class RMCharacterListViewModel: NSObject {
     public var shouldShowLoadMoreIndicator: Bool { return apiInfo?.next != nil }
     
     // MARK: - Helpers
-    
     /// Fetch initial set of characters (20)
     public func fetchCharacters() {
         RMService.shared.execute(.listCharactersRequests,
@@ -48,9 +47,7 @@ final class RMCharacterListViewModel: NSObject {
                 case .success(let model):
                     self?.characters = model.results
                     self?.apiInfo = model.info
-                    DispatchQueue.main.async {
-                        self?.delegate?.didLoadInitialCharacters()
-                    }
+                    DispatchQueue.main.async { self?.delegate?.didLoadInitialCharacters() }
                 case .failure(let error): print(String(describing: error))
             }
         }

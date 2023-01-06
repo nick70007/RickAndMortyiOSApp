@@ -11,7 +11,8 @@ import UIKit
 final class RMCharacterDetailsView: UIView {
 
     // MARK: - Properties
-    private var collectionView: UICollectionView?
+    public var collectionView: UICollectionView?
+    private let viewModel: RMCharacterDetailsViewModel
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -20,18 +21,17 @@ final class RMCharacterDetailsView: UIView {
     }()
     
     // MARK: - Init
-    override init(frame: CGRect) {
+    init(frame: CGRect, viewModel: RMCharacterDetailsViewModel) {
+        self.viewModel = viewModel
         super.init(frame: frame)
-        backgroundColor = .systemPurple
-        self.collectionView = createCollectionView()
-        guard let cv = collectionView else { return }
-        addSubViews(cv,spinner)
+        backgroundColor = .systemBackground
+        let collectionView = createCollectionView()
+        self.collectionView = collectionView
+        addSubViews(collectionView,spinner)
         self.addConstraints()
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("Unsupported")
-    }
+    required init?(coder: NSCoder) { fatalError("Unsupported") }
     
     // MARK: - Helpers
     private func addConstraints() {
@@ -51,6 +51,10 @@ final class RMCharacterDetailsView: UIView {
     }
     
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
-        
+        switch viewModel.sections[sectionIndex] {
+            case .photo: return viewModel.createPhotoSectionLayout()
+            case .information: return viewModel.createInfoSectionLayout()
+            case .episodes: return viewModel.createEpisodeSectionLayout()
+        }
     }
 }

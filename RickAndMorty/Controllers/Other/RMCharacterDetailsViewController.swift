@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LeakedViewControllerDetector
 
 /// Controller to show info about single character
 final class RMCharacterDetailsViewController: UIViewController {
@@ -20,7 +21,7 @@ final class RMCharacterDetailsViewController: UIViewController {
         self.detailsView = RMCharacterDetailsView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
-    
+   
     required init?(coder: NSCoder) { fatalError("Unsupported") }
     
     // MARK: - Life Cycle
@@ -63,7 +64,7 @@ extension RMCharacterDetailsViewController: UICollectionViewDelegate, UICollecti
         switch section {
             case 0: return 1
             case 1: return 8
-            case 2: return 20
+            case 2: return 10
             default: return 1
         }
     }

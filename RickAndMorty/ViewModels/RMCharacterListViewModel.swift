@@ -147,7 +147,7 @@ extension RMCharacterListViewModel: UIScrollViewDelegate {
               let url = URL(string: nextURL) else {
                   return
               }
-        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+        Timer.scheduledTimer(withTimeInterval: 0.0, repeats: false) { [weak self] timer in
             let offset = scrollView.contentOffset.y
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height

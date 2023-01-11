@@ -37,9 +37,7 @@ final class RMCharacterDetailsViewController: UIViewController {
     }
     
     // MARK: - Helpers
-    private func addConstraints() {
-        self.detailsView.fillSuperviewSafeAreaLayoutGuide()
-    }
+    private func addConstraints() { self.detailsView.fillSuperviewSafeAreaLayoutGuide() }
    
     private func addBarButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action,
@@ -61,23 +59,38 @@ extension RMCharacterDetailsViewController: UICollectionViewDelegate, UICollecti
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-            case 0: return 1
-            case 1: return 8
-            case 2: return 10
-            default: return 1
+        
+        let sectionType = viewModel.sections[section]
+        
+        switch sectionType {
+            case .photo: return 1
+            case .information(let viewModels): return viewModels.count
+            case .episodes(let viewModels): return viewModels.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if indexPath.section == 0 {
-            cell.backgroundColor = .systemPink
-        } else if indexPath.section == 1 {
-            cell.backgroundColor = .systemBlue
-        } else {
-            cell.backgroundColor = .systemGreen
+        let sectionType = viewModel.sections[indexPath.section]
+        
+        switch sectionType {
+            case .photo(let viewModel):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterPhotoCell.cellID, for: indexPath) as? RMCharacterPhotoCell else {
+                    fatalError()
+                }
+                cell.configure(with: viewModel)
+                return cell
+            case .information(let viewModels):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterInfoCell.cellID, for: indexPath) as? RMCharacterInfoCell else {
+                    fatalError()
+                }
+                cell.configure(with: viewModels[indexPath.row])
+                return cell
+            case .episodes(let viewModels):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterEpisodeCell.cellID, for: indexPath) as? RMCharacterEpisodeCell else {
+                    fatalError()
+                }
+                cell.configure(with: viewModels[indexPath.row])
+                return cell
         }
-        return cell
     }
 }

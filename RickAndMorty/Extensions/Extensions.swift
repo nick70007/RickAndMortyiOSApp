@@ -22,6 +22,13 @@ extension UIView {
         views.forEach({ addSubview($0) })
     }
     
+    func customCornerRadius(radius: CGFloat) {
+        delay {
+            self.layer.cornerRadius = radius
+            self.clipsToBounds = true
+        }
+    }
+    
     func setCellDropShadow(cornerRadius: CGFloat? = 0.0, shadowRadius: CGFloat, shadowColor:UIColor, shadowOpacity:Float, offsetWidth: CGFloat, offsetHeight: CGFloat) {
         delay {
             self.layer.masksToBounds = false
@@ -210,6 +217,16 @@ extension UIView {
         translatesAutoresizingMaskIntoConstraints = false
         var anchoredConstraints = AnchoredConstraints()
         anchoredConstraints.height = heightAnchor.constraint(equalToConstant: constant)
+        anchoredConstraints.height?.isActive = true
+        return anchoredConstraints
+    }
+    
+    @discardableResult
+    open func constrainHeight(_ anchor: NSLayoutDimension, multiplier: CGFloat) -> AnchoredConstraints {
+        translatesAutoresizingMaskIntoConstraints = false
+        var anchoredConstraints = AnchoredConstraints()
+        anchoredConstraints.height = heightAnchor.constraint(equalTo: anchor,
+                                                             multiplier: multiplier)
         anchoredConstraints.height?.isActive = true
         return anchoredConstraints
     }

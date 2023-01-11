@@ -14,17 +14,37 @@ final class RMCharacterDetailsViewModel {
     private var requestURL: URL? { return URL(string: character.url) }
     public var title: String { self.character.name.uppercased() }
     
-    enum SectionType: CaseIterable {
-        case photo
-        case information
-        case episodes
+    enum SectionType {
+        case photo(_ viewModel: RMCharacterPhotoViewModel)
+        case information(_ viewModels: [RMCharacterInfoViewModel])
+        case episodes(_ viewModels: [RMCharacterEpisodeViewModel])
     }
     
-    public let sections = SectionType.allCases
+    public var sections: [SectionType] = []
     
     // MARK: - Init
     init(character: RMCharacter) {
         self.character = character
+        self.setupSections()
+    }
+    
+    // MARK: - Sections
+    private func setupSections() {
+        self.sections = [.photo(.init(imageURL: URL(string: character.image))),
+                         .information([
+                            .init(type: .status, value: character.status.text),
+                            .init(type: .gender, value: character.gender.rawValue),
+                            .init(type: .type, value: character.type),
+                            .init(type: .species, value: character.species),
+                            .init(type: .origin, value: character.origin.name),
+                            .init(type: .location, value: character.location.name),
+                            .init(type: .created, value: character.created),
+                            .init(type: .episodeCount, value: "\(character.episode.count)")
+                         ]),
+                         .episodes(character.episode.compactMap {
+                            return RMCharacterEpisodeViewModel(episodeDataURL: URL(string: $0))
+                         })
+        ]
     }
     
     //MARK: - Layout

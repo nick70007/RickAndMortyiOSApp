@@ -13,10 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        LeakedViewControllerDetector.onDetect() { leakedViewController, leakedView, message in
-            return true
-        }
-        
+//        LeakedViewControllerDetector.onDetect() { leakedViewController, leakedView, message in
+//            return true
+//        }
+//        
         return true
     }
 

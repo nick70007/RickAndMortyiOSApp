@@ -46,7 +46,9 @@ final class RMCharacterDetailsView: UIView {
             return self.createSection(for: sectionIndex)
         }
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(RMCharacterPhotoCell.self, forCellWithReuseIdentifier: RMCharacterPhotoCell.cellID)
+        collectionView.register(RMCharacterInfoCell.self, forCellWithReuseIdentifier: RMCharacterInfoCell.cellID)
+        collectionView.register(RMCharacterEpisodeCell.self, forCellWithReuseIdentifier: RMCharacterEpisodeCell.cellID)
         return collectionView
     }
     

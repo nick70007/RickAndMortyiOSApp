@@ -68,14 +68,14 @@ final class RMCharacterInfoViewModel {
         
         var iconImage: UIImage? {
             switch self {
-                case .status: return UIImage.init(systemName: "")
-                case .gender: return UIImage.init(systemName: "")
-                case .type: return UIImage.init(systemName: "")
-                case .species: return UIImage.init(systemName: "")
-                case .origin: return UIImage.init(systemName: "")
-                case .location: return UIImage.init(systemName: "")
-                case .created: return UIImage.init(systemName: "")
-                case .episodeCount: return UIImage.init(systemName: "")
+                case .status: return UIImage.init(systemName: "bell")
+                case .gender: return UIImage.init(systemName: "bell")
+                case .type: return UIImage.init(systemName: "bell")
+                case .species: return UIImage.init(systemName: "bell")
+                case .origin: return UIImage.init(systemName: "bell")
+                case .location: return UIImage.init(systemName: "bell")
+                case .created: return UIImage.init(systemName: "bell")
+                case .episodeCount: return UIImage.init(systemName: "bell")
             }
         }
         

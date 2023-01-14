@@ -34,9 +34,7 @@ final class RMCharacterEpisodeViewModel {
     // MARK: - Methods
     public func fetchEpisode() {
         guard !isFetching else {
-            if let model = episode {
-                dataBlock?(model)
-            }
+            if let model = episode { dataBlock?(model) }
             return
         }
         guard let url = episodeDataURL, let request = RMRequest(url: url) else { return }

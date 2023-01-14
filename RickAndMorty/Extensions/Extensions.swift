@@ -53,6 +53,17 @@ extension UIView {
         }
     }
     
+    func setCornerRadiusAndBorder(radius:CGFloat,
+                                  borderWidth:CGFloat? = 0.0,
+                                  borderColor:UIColor? = .clear) {
+        delay {
+            self.layer.cornerRadius = radius
+            self.clipsToBounds = true
+            self.layer.borderColor = borderColor?.cgColor
+            self.layer.borderWidth = borderWidth ?? 0
+        }
+    }
+    
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 left: NSLayoutXAxisAnchor? = nil,
                 bottom: NSLayoutYAxisAnchor? = nil,

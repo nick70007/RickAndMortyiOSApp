@@ -18,18 +18,18 @@ final class RMCharacterEpisodeViewModel {
     // MARK: - Properties
     private let episodeDataURL: URL?
     private var isFetching = false
+    
     private var episode: RMEpisode? {
         didSet {
             guard let model = episode else { return }
             dataBlock?(model)
         }
     }
+    
     private var dataBlock: ((RMEpisodeDataRender) -> ())?
     
     // MARK: - Init
-    init(episodeDataURL: URL?) {
-        self.episodeDataURL = episodeDataURL
-    }
+    init(episodeDataURL: URL?) { self.episodeDataURL = episodeDataURL }
     
     // MARK: - Methods
     public func fetchEpisode() {
